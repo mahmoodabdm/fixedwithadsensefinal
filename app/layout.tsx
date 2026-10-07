@@ -1,19 +1,67 @@
-
 import "./globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
+
+const baseUrl = "https://fixedwithadsensefinal.vercel.app";
 
 export const metadata: Metadata = {
-  title: "USA Paycheck Calculator 2026 - Accurate Take-Home Pay Calculator",
-  description: "Calculate your exact take-home pay for 2026 with federal, state, FICA, and city taxes. IRS 2026 Verified.",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "USA Paycheck Calculator 2026 - Accurate Take-Home Pay Calculator",
+    template: "%s | USA Paycheck Calculator 2026",
+  },
+  description: "Calculate your exact take-home pay for 2026 with federal, state, FICA, and city taxes. IRS 2026 Verified. No data stored, 100% accurate.",
+  keywords: ["paycheck calculator", "take home pay", "federal tax 2026", "state tax calculator", "FICA calculator", "USA salary calculator"],
+  authors: [{ name: "USA Paycheck Calculator Team" }],
+  creator: "USA Paycheck Calculator",
+  publisher: "USA Paycheck Calculator",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: baseUrl,
+    title: "USA Paycheck Calculator 2026",
+    description: "Calculate your exact take-home pay for 2026 with federal, state, FICA taxes. IRS Verified.",
+    siteName: "USA Paycheck Calculator 2026",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "USA Paycheck Calculator 2026",
+    description: "Accurate take-home pay calculator for 2026",
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+  // من تفعل Google Search Console ضيف الكود هنا
+  // verification: {
+  //   google: 'كود التحقق مالتك هنا',
+  // },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3673154819131367" crossOrigin="anonymous"></script>
-      </head>
-      <body className="min-h-screen bg-[#f8fafc] text-slate-900">{children}</body>
+      <body className="min-h-screen bg-[#f8fafc] text-slate-900 antialiased">
+        {children}
+        
+        {/* Google AdSense - محمل بطريقة صحيحة لـ Next.js */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3673154819131367"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
